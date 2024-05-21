@@ -59,13 +59,42 @@ models <- list(correct1a_model, correct1b_model,
                correct4a_model, correct4b_model)
 
 # Set custom model names
-model_names <- c("correct1a", "correct1b", 
-                 "correct2a", "correct2b", 
-                 "correct3a", "correct3b", 
-                 "correct4a", "correct4b")
+model_names <- c("Experiment 1a", "Experiment 1b", 
+                 "Experiment 2a", "Experiment 2b", 
+                 "Experiment 3a", "Experiment 3b", 
+                 "Experiment 4a", "Experiment 4b")
 
 # Generate the regression table
-texreg(models, custom.model.names = model_names)
+texreg(
+  models, 
+  custom.model.names = model_names,
+  custom.coef.names = c("Constant", "Shock/Loss pattern", "High accuracy bonus (HAB)",
+                        "Difficult pattern (DP)", "Shock/Loss pattern $\\times$ HAB",
+                        "Shock/Loss pattern $\\times$ DP", "Loss Size (LS)", 
+                        "Shock/Loss pattern $\\times$ LS"),
+  digits = 3,
+  override.se = list( # Generating t-stats
+    c(1-pt(abs(as.numeric(correct1a_model$coefficients / correct1a_model$se)), df=correct1a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct1b_model$coefficients / correct1b_model$se)), df=correct1b_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct2a_model$coefficients / correct2a_model$se)), df=correct2a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct2b_model$coefficients / correct2b_model$se)), df=correct2b_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct3a_model$coefficients / correct3a_model$se)), df=correct3a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct3b_model$coefficients / correct3b_model$se)), df=correct3b_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct4a_model$coefficients / correct4a_model$se)), df=correct4a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct4b_model$coefficients / correct4b_model$se)), df=correct4b_model$nobs-1))
+  ), 
+  override.pvalues = list( # Generating t-values
+    c(1-pt(abs(as.numeric(correct1a_model$coefficients / correct1a_model$se)), df=correct1a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct1b_model$coefficients / correct1b_model$se)), df=correct1b_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct2a_model$coefficients / correct2a_model$se)), df=correct2a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct2b_model$coefficients / correct2b_model$se)), df=correct2b_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct3a_model$coefficients / correct3a_model$se)), df=correct3a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct3b_model$coefficients / correct3b_model$se)), df=correct3b_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct4a_model$coefficients / correct4a_model$se)), df=correct4a_model$nobs-1)),
+    c(1-pt(abs(as.numeric(correct4b_model$coefficients / correct4b_model$se)), df=correct4b_model$nobs-1))
+  ),
+  file = "Tables/Table_2.tex"
+)
 
 # ROBUSTNESS CHECK: Consider trials 0,1,2 respectively
 
