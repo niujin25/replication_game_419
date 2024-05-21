@@ -27,7 +27,7 @@ data_table2 <- data_table2 %>%
          alignedXdifficult = aligned * difficult)
 
 
-# Linear regression models with cluser errors
+# Linear regression models with cluster errors
 correct1a_model <- feols(correct100 ~ aligned + accbonus + difficult, cluster = ~ id, data = subset(data_table2, experiment == 1))
 correct1b_model <- feols(correct100 ~ aligned + accbonus + difficult + alignedXaccbonus + alignedXdifficult, cluster = ~ id, data = subset(data_table2, experiment == 1))
 correct2a_model <- feols(correct100 ~ aligned + accbonus + difficult + stake, cluster = ~ id, data = subset(data_table2, experiment == 2))
@@ -74,24 +74,24 @@ texreg(
                         "Shock/Loss pattern $\\times$ LS"),
   digits = 3,
   override.se = list( # Generating t-stats
-    c(1-pt(abs(as.numeric(correct1a_model$coefficients / correct1a_model$se)), df=correct1a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct1b_model$coefficients / correct1b_model$se)), df=correct1b_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct2a_model$coefficients / correct2a_model$se)), df=correct2a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct2b_model$coefficients / correct2b_model$se)), df=correct2b_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct3a_model$coefficients / correct3a_model$se)), df=correct3a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct3b_model$coefficients / correct3b_model$se)), df=correct3b_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct4a_model$coefficients / correct4a_model$se)), df=correct4a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct4b_model$coefficients / correct4b_model$se)), df=correct4b_model$nobs-1))
+    c(1-pnorm(abs(as.numeric(correct1a_model$coefficients / correct1a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct1b_model$coefficients / correct1b_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct2a_model$coefficients / correct2a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct2b_model$coefficients / correct2b_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct3a_model$coefficients / correct3a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct3b_model$coefficients / correct3b_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct4a_model$coefficients / correct4a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct4b_model$coefficients / correct4b_model$se))))
   ), 
   override.pvalues = list( # Generating t-values
-    c(1-pt(abs(as.numeric(correct1a_model$coefficients / correct1a_model$se)), df=correct1a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct1b_model$coefficients / correct1b_model$se)), df=correct1b_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct2a_model$coefficients / correct2a_model$se)), df=correct2a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct2b_model$coefficients / correct2b_model$se)), df=correct2b_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct3a_model$coefficients / correct3a_model$se)), df=correct3a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct3b_model$coefficients / correct3b_model$se)), df=correct3b_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct4a_model$coefficients / correct4a_model$se)), df=correct4a_model$nobs-1)),
-    c(1-pt(abs(as.numeric(correct4b_model$coefficients / correct4b_model$se)), df=correct4b_model$nobs-1))
+    c(1-pnorm(abs(as.numeric(correct1a_model$coefficients / correct1a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct1b_model$coefficients / correct1b_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct2a_model$coefficients / correct2a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct2b_model$coefficients / correct2b_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct3a_model$coefficients / correct3a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct3b_model$coefficients / correct3b_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct4a_model$coefficients / correct4a_model$se)))),
+    c(1-pnorm(abs(as.numeric(correct4b_model$coefficients / correct4b_model$se))))
   ),
   file = "Tables/Table_2.tex"
 )

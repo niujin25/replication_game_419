@@ -76,24 +76,24 @@ texreg(
                         "Difficult pattern (DP)", "Shock/Loss pattern $\\times$ HAB",
                         "Shock/Loss pattern $\\times$ DP"),
   override.se = list( # Replace SEs with T-values
-    c(1-pt(abs(as.numeric(Exp3a_no_drop$coefficients / Exp3a_no_drop$se)), df=Exp3a_no_drop$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_no_drop$coefficients / Exp3b_no_drop$se)), df=Exp3b_no_drop$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3a_drop_0$coefficients / Exp3a_drop_0$se)), df=Exp3a_drop_0$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_drop_0$coefficients / Exp3b_drop_0$se)), df=Exp3b_drop_0$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3a_drop_1$coefficients / Exp3a_drop_1$se)), df=Exp3a_drop_1$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_drop_1$coefficients / Exp3b_drop_1$se)), df=Exp3b_drop_1$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3a_drop_2$coefficients / Exp3a_drop_2$se)), df=Exp3a_drop_2$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_drop_2$coefficients / Exp3b_drop_2$se)), df=Exp3b_drop_2$nobs-1))
+    c(1-pnorm(abs(as.numeric(Exp3a_no_drop$coefficients / Exp3a_no_drop$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_no_drop$coefficients / Exp3b_no_drop$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3a_drop_0$coefficients / Exp3a_drop_0$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_drop_0$coefficients / Exp3b_drop_0$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3a_drop_1$coefficients / Exp3a_drop_1$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_drop_1$coefficients / Exp3b_drop_1$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3a_drop_2$coefficients / Exp3a_drop_2$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_drop_2$coefficients / Exp3b_drop_2$se))))
   ),
   override.pvalues = list( # Replace P-values with T-values
-    c(1-pt(abs(as.numeric(Exp3a_no_drop$coefficients / Exp3a_no_drop$se)), df=Exp3a_no_drop$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_no_drop$coefficients / Exp3b_no_drop$se)), df=Exp3b_no_drop$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3a_drop_0$coefficients / Exp3a_drop_0$se)), df=Exp3a_drop_0$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_drop_0$coefficients / Exp3b_drop_0$se)), df=Exp3b_drop_0$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3a_drop_1$coefficients / Exp3a_drop_1$se)), df=Exp3a_drop_1$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_drop_1$coefficients / Exp3b_drop_1$se)), df=Exp3b_drop_1$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3a_drop_2$coefficients / Exp3a_drop_2$se)), df=Exp3a_drop_2$nobs-1)),
-    c(1-pt(abs(as.numeric(Exp3b_drop_2$coefficients / Exp3b_drop_2$se)), df=Exp3b_drop_2$nobs-1))
+    c(1-pnorm(abs(as.numeric(Exp3a_no_drop$coefficients / Exp3a_no_drop$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_no_drop$coefficients / Exp3b_no_drop$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3a_drop_0$coefficients / Exp3a_drop_0$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_drop_0$coefficients / Exp3b_drop_0$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3a_drop_1$coefficients / Exp3a_drop_1$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_drop_1$coefficients / Exp3b_drop_1$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3a_drop_2$coefficients / Exp3a_drop_2$se)))),
+    c(1-pnorm(abs(as.numeric(Exp3b_drop_2$coefficients / Exp3b_drop_2$se))))
   )
 )
 
