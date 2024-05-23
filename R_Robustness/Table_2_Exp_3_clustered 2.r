@@ -75,6 +75,7 @@ texreg(
   custom.coef.names = c("Constant", "Shock/Loss pattern", "High accuracy bonus (HAB)",
                         "Difficult pattern (DP)", "Shock/Loss pattern $\\times$ HAB",
                         "Shock/Loss pattern $\\times$ DP"),
+  digits = 3,
   override.se = list( # Replace SEs with T-values
     c(1-pnorm(abs(as.numeric(Exp3a_no_drop$coefficients / Exp3a_no_drop$se)))),
     c(1-pnorm(abs(as.numeric(Exp3b_no_drop$coefficients / Exp3b_no_drop$se)))),
